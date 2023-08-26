@@ -1,11 +1,14 @@
-local function getgame()
- return "https://raw.githubusercontent.com/Tropxzz/Xypertise/main/Games/"..game.PlaceId
-end 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Xpertise/main/Ching.lua",true))()
 
-local g = getgame()
+function runwhenwhitelist()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Xpertise/main/Games/"..game.PlaceId..".lua",true))()
+end
 
-if g then
- loadstring(g) 
-else
- game.Players.LocalPlayer:Kick("")
+if game.PlaceId == 155615604 then
+ shared.PL = true
+runwhenwhitelist()
+end
+
+if shared.PL == false then-- and other stuff
+ game.Players.LocalPlayer:Kick()
 end
