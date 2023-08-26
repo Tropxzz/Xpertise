@@ -15,11 +15,73 @@ local iyflyspeed = 1
 local runService = game:GetService("RunService")
 local UserInputService = game.UserInputService
 local Players = game.Players
+local Workspace = workspace
 
 -- ISONMOBLIE
 local IsOnMobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform())
 
+-- [Aimbot shit]
+local Camera = workspace.CurrentCamera
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+local Holding = false
+
+_G.AimbotEnabled = true
+_G.TeamCheck = true -- If set to true then the script would only lock your aim at enemy team members.
+_G.AimPart = "Head" -- Where the aimbot script would lock at.
+_G.Sensitivity = 0 -- How many seconds it takes for the aimbot script to officially lock onto the target's aimpart.
+
 -- [Functions]
+
+local function GetClosestPlayer()
+	local MaximumDistance = math.huge
+	local Target = nil
+  
+  	coroutine.wrap(function()
+    		wait(20); MaximumDistance = math.huge -- Reset the MaximumDistance so that the Aimbot doesn't remember it as a very small variable and stop capturing players...
+  	end)()
+
+	for _, v in next, Players:GetPlayers() do
+		if v.Name ~= LocalPlayer.Name then
+			if _G.TeamCheck == true then
+				if v.Team ~= LocalPlayer.Team then
+					if v.Character ~= nil then
+						if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+							if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+								local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+								local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+								
+								if VectorDistance < MaximumDistance then
+									Target = v
+                  							MaximumDistance = VectorDistance
+								end
+							end
+						end
+					end
+				end
+			else
+				if v.Character ~= nil then
+					if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+						if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+							local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+							local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+							
+							if VectorDistance < MaximumDistance then
+								Target = v
+               							MaximumDistance = VectorDistance
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	return Target
+end
 
 function NOFLY()
 	FLYING = false
@@ -33,6 +95,31 @@ end
 function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
 	return rootPart
+end
+
+   local function ShowESP()
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        -- Create an ESP object for each player and adjust its properties
+        local esp = Instance.new("BoxHandleAdornment")
+        esp.Adornee = player.Character:FindFirstChild("HumanoidRootPart")
+        esp.Size = esp.Adornee.Size
+        esp.Color3 = Color3.fromRGB(255, 0, 0) -- Choose your desired color
+        esp.Transparency = 0.5 -- Choose your desired transparency
+        esp.ZIndex = 5
+        esp.AlwaysOnTop = true
+        esp.Visible = true
+        esp.Parent = esp.Adornee
+    end
+end
+
+local function DisableESP()
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        -- Find and remove the ESP object from each player
+        local esp = player.Character.HumanoidRootPart:FindFirstChild("BoxHandleAdornment")
+        if esp then
+            esp:Destroy()
+        end
+    end
 end
 
 function sFLY(vfly)
@@ -491,5 +578,203 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = hrpCFrame.CFrame
     end
 end)
 
+-- [Visuals]
 
+V:Toggle('Aimbot (color doesnt work)', function(v)
+_G.AimbotEnabled = v
+
+if v then
+while _G.AimbotEnabled == true do
+            local closestPlayer = GetClosestPlayer()
+                local aimPartPosition = closestPlayer.Character[_G.AimPart].Position
+                local aimCFrame = CFrame.new(Camera.CFrame.Position, aimPartPosition)
+                TweenService:Create(Camera, TweenInfo.new(_G.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = aimCFrame}):Play()
+                wait(0.3)
+            end
+            else
+            print('s')
+            end
+end)
+
+V:Toggle("Esp", function(v)
+ if v ~= false then
+ShowESP()
+else
+DisableESP()
+ end
+end)
+
+-- [Misc]
+
+Misc:Button('Auto Report (ty the person i skidded from)', function(callback)
+    local lib = {
+	['notification'] = loadstring(game:HttpGet(("https://raw.githubusercontent.com/AbstractPoo/Main/main/Notifications.lua"), true))(),
+	['cooldown'] = false,
+	['username'] = 'unknown',
+	['bw'] = 'unknown'
+}
+
+local words = {
+	['gay'] = 'Bullying',
+	['trans'] = 'Bullying',
+	['lgbt'] = 'Bullying',
+	['lesbian'] = 'Bullying',
+	['suicide'] = 'Bullying',
+	['cum'] = 'Swearing',
+	['f@g0t'] = 'Bullying',
+	['cock'] = 'Swearing',
+	['penis'] = 'Swearing',
+	['furry'] = 'Bullying',
+	['furries'] = 'Bullying',
+	['dick'] = 'Swearing',
+	['nigger'] = 'Bullying',
+	['bible'] = 'Bullying',
+	['nigga'] = 'Bullying',
+	['cheat'] = 'Scamming',
+	['report'] = 'Bullying',
+	['niga'] = 'Bullying',
+	['bitch'] = 'Bullying',
+	['sex'] = 'Swearing',
+	['cringe'] = 'Bullying',
+	['trash'] = 'Bullying',
+	['allah'] = 'Bullying',
+	['dumb'] = 'Bullying',
+	['idiot'] = 'Bullying',
+	['kid'] = 'Bullying',
+	['clown'] = 'Bullying',
+	['bozo'] = 'Bullying',
+	['faggot'] = 'Bullying',
+	['autist'] = 'Bullying',
+	['autism'] = 'Bullying',
+	['get a life'] = 'Bullying',
+	['nolife'] = 'Bullying',
+	['no life'] = 'Bullying',
+	['adopted'] = 'Bullying',
+	['skill issue'] = 'Bullying',
+	['muslim'] = 'Bullying',
+	['gender'] = 'Bullying',
+	['parent'] = 'Bullying',
+	['islam'] = 'Bullying',
+	['christian'] = 'Bullying',
+	['noob'] = 'Bullying',
+	['retard'] = 'Bullying',
+	['burn'] = 'Bullying',
+	['stupid'] = 'Bullying',
+	['wthf'] = 'Swearing',
+	['pride'] = 'Bullying',
+	['mother'] = 'Bullying',
+	['father'] = 'Bullying',
+	['homo'] = 'Bullying',
+	['hate'] = 'Bullying',
+	['exploit'] = 'Scamming',
+	['hack'] = 'Scamming',
+	['download'] = 'Scamming',
+	['youtube'] = 'Offsite Links',
+    ['Tropxz'] = 'Bullying',
+    ['Hacker'] = "Bullying"
+}
+
+local players = game:GetService('Players')
+local user = game:GetService('Players').LocalPlayer
+
+function lib.notify()
+	lib.notification:message{
+		Title = "AutoReport",
+		Description = "Reported " .. lib.username .. ' for saying "' .. lib.bw .. '"',
+		Icon = 6023426926
+	}
+end
+
+function lib.report(user, name, rs)
+	if user and lib.cooldown == false then
+		lib.username = name
+		local suc, er = pcall(function()
+			players:ReportAbuse(players:FindFirstChild(name), rs, 'breaking TOS')
+		end)
+		if not suc then
+			return warn("Couldn't report due to the reason: " .. er .. ' | AR')
+		else
+			lib.notify()
+		end
+		lib.cooldown = true
+		task.wait(5)
+		lib.username = 'unknown'
+		lib.bw = 'unknown'
+		lib.cooldown = false
+	end
+end
+
+players.PlayerChatted:Connect(function(chatType, plr, msg)
+	msg = string.lower(msg)
+	if chatType ~= Enum.PlayerChatType.Whisper and plr ~= user then
+		for i, v in next, words do
+			if string.find(msg, i) then
+				lib.bw = i
+				lib.report(plr.UserId, plr.Name,v)
+			end
+		end
+	end
+end)
+
+lib.notification:message{
+	Title = "AutoReport",
+	Description = "loaded",
+	Icon = 6023426926
+}
+end)
+
+Misc:Button('Destroy GUI', function()
+    win:Exit()
+end)
+
+Misc:Button('Police Team', function()
+              Workspace.Remote.TeamEvent:FireServer("Bright blue")
+                if #game:GetService("Teams").Guards:GetPlayers() >= 8 then
+   
+                    game:GetService("Players").LocalPlayer.PlayerGui.Home.hud.AddedGui.tooltip.TextLabel.TextXAlignment = "Left"
+                    require(game:GetService("ReplicatedStorage").Modules_client.TooltipModule).update("")
+                    local v1 = "  ".."Guard team is full, try again later."
+                    for v2 = 1, #v1 do
+                        game:GetService("Players").LocalPlayer.PlayerGui.Home.hud.AddedGui.tooltip.TextLabel.Text = string.sub(v1, 1, v2)
+                    wait(0.05)
+                    end
+   
+                end
+end)
+
+Misc:Button('Naturel Team', function()
+      Workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+end)
+
+Misc:Button('Inmate', function()
+               Workspace.Remote.TeamEvent:FireServer("Bright orange")
+end)
+
+Misc:Button('Crim', function()
+Crim = game.Workspace["Criminals Spawn"].SpawnLocation
+       Crim.CanCollide = false
+       Crim.Size = Vector3.new(51.05, 24.12, 54.76)
+       Crim.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+       Crim.Transparency = 1
+      wait()
+       Crim.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+       Crim.Size = Vector3.new(6, 0.2, 6)
+       Crim.Transparency = 0
+end)
+
+-- [Settings]
+Settings:Slider('FLyspeed', 1,1,1000, function(v)
+iyflyspeed = v
+end)
+
+Settings:Textbox('FLyspeed', function(v)
+iyflyspeed = v
+end)
+
+game:GetService("Players").LocalPlayer.PlayerGui.Home.hud.AddedGui.tooltip.TextLabel.TextXAlignment = "Left"
+require(game:GetService("ReplicatedStorage").Modules_client.TooltipModule).update("")
+local v1 = "  ".."Made by tropx__z#0, Xpertise on top."
+for v2 = 1, #v1 do
+   game:GetService("Players").LocalPlayer.PlayerGui.Home.hud.AddedGui.tooltip.TextLabel.Text = string.sub(v1, 1, v2)
+end
 
