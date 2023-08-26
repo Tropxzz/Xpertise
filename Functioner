@@ -1,0 +1,11 @@
+local function getgame()
+ return "https://raw.githubusercontent.com/Tropxzz/Xypertise/main/Games/"..game.PlaceId
+end 
+
+local g = getgame()
+
+if g then
+ loadstring(g) 
+else
+ game.Players.LocalPlayer:Kick("")
+end
