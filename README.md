@@ -1,10 +1,10 @@
 # Xpertise
-Welcome to Xpertise – the ultimate script designed to enhance your gameplay across a diverse range of 100+ games. Our script not only adds an extra layer of fun and excitement to your gaming sessions but also provides a unique trolling experience. Built as an open-source project, Xpertise is a testament to our commitment to the gaming community.
+Welcome to Xpertise – the ultimate script designed to enhance your gameplay across a diverse range of 100+ Roblox games. Our script not only adds an extra layer of fun and excitement to your Exploiting Experience but also provides a unique trolling experience. Built as an open-source project, Xpertise is a testament to our commitment to the exploiting community.
 
 # Important Notice
 We value the integrity of our work and the community that surrounds it. As such, we have a strict policy regarding the usage of our code. It is explicitly prohibited to sell, trade, or exchange our code for any form of currency, including but not limited to Robux, money, or Nitro. This policy extends to all forms of compensation. 
 
-Violation of this policy will result in immediate and permanent exclusion from accessing any of our future scripts. We believe in fostering a positive and respectful gaming environment, and we appreciate your cooperation in maintaining these standards.
+Violation of this policy will result in immediate and permanent exclusion from accessing any of our future scripts. We believe in fostering a positive and respectful exploiting environment, and we appreciate your cooperation in maintaining these standards.
 
 Thank you for choosing Xpertise to elevate your gaming adventures. We look forward to continuously delivering top-tier scripts and an unparalleled gaming experience.
 
