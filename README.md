@@ -1,4 +1,13 @@
 # Xpertise
-The best script for over 100+ games it is very fun to use and you can troll and its open source (kys if u skid)
-# NOTICE
-DO NOT SELL MY CODE FOR ANY ROBUX/MONEY/NITRO/ETC IF I FIND OUT YOU WILL BE BANNED FROM ALL OF MY FUTURE SCRIPTS. 
+Welcome to Xpertise – the ultimate script designed to enhance your gameplay across a diverse range of 100+ games. Our script not only adds an extra layer of fun and excitement to your gaming sessions but also provides a unique trolling experience. Built as an open-source project, Xpertise is a testament to our commitment to the gaming community.
+
+# Important Notice
+We value the integrity of our work and the community that surrounds it. As such, we have a strict policy regarding the usage of our code. It is explicitly prohibited to sell, trade, or exchange our code for any form of currency, including but not limited to Robux, money, or Nitro. This policy extends to all forms of compensation. 
+
+Violation of this policy will result in immediate and permanent exclusion from accessing any of our future scripts. We believe in fostering a positive and respectful gaming environment, and we appreciate your cooperation in maintaining these standards.
+
+Thank you for choosing Xpertise to elevate your gaming adventures. We look forward to continuously delivering top-tier scripts and an unparalleled gaming experience.
+
+Note: Any unauthorized distribution or misuse of Xpertise may result in legal consequences.
+
+Disclaimer: Xpertise is intended for educational and recreational purposes only. The developers and contributors are not responsible for any misuse or unintended effects of the script. Use at your own discretion.
