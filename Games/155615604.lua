@@ -1,3 +1,7 @@
+--[[
+Think before skidding
+https://raw.githubusercontent.com/Tropxzz/Xpertise/main/LICENSE
+]]
 -- [Varibles]
 local plr = game.Players.LocalPlayer
 local char = plr.Character
