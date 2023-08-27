@@ -11,3 +11,6 @@ Thank you for choosing Xpertise to elevate your gaming adventures. We look forwa
 Note: Any unauthorized distribution or misuse of Xpertise may result in legal consequences.
 
 Disclaimer: Xpertise is intended for educational and recreational purposes only. The developers and contributors are not responsible for any misuse or unintended effects of the script. Use at your own discretion.
+
+#LICENSE
+https://raw.githubusercontent.com/Tropxzz/Xpertise/main/LICENSE
